@@ -30,4 +30,8 @@ li {
 }
 .gallery-image {
   width: 360px;
+  transition: transform 0.3s;
+}
+.gallery-image:hover {
+  transform: scale(1.04);
 }
