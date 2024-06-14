@@ -66,7 +66,7 @@ const images = [
 
 const galleryList = document.querySelector(".gallery");
 
-const marcupImages = images
+const markupImages = images
   .map(
     ({ preview, original, description }) =>
       `<li class="gallery-item">
@@ -80,17 +80,18 @@ const marcupImages = images
             </a>
         </li>`
   )
-  .join(""); // creata marcup HTML
+  .join(""); // create markup HTML
 
-galleryList.insertAdjacentHTML("afterbegin", marcupImages); // add marcup to html
-galleryList.addEventListener("click", (img) => img.preventDefault()); //  not download images default
+galleryList.insertAdjacentHTML("afterbegin", markupImages); // add markup to html
 galleryList.addEventListener("click", selectImage); //choiсe image on click
 
 function selectImage(event) {
-  if (event.currentTarget === event.target) {
+  event.preventDefault(); //not download images default
+  if (event.target.nodeName !== "IMG") {
     return;
   }
   const selectedImage = event.target.dataset.source;
+  console.log(selectedImage);
 
   const instance = basicLightbox.create(`<img src="${selectedImage}">`);
   instance.show();
